@@ -5,9 +5,9 @@ from PyQt5 import QtCore,QtWidgets
 from PyQt5.uic import loadUi
 from sqlite_conection import Conect
 
-class Main(QMainWindow):
+class Admin_store(QMainWindow):
     def __init__(self):
-        super(Main,self).__init__()
+        super(Admin_store,self).__init__()
         loadUi('admin_store.ui',self)
         #Comunicación con db
         self.men_bt.clicked.connect(self.move_men)
@@ -199,7 +199,7 @@ class Main(QMainWindow):
         
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    admin = Main()
+    admin = Admin_store()
     admin.show()
     sys.exit(app.exec_())
 
