@@ -822,9 +822,23 @@ border:1px solid rgb(32, 80, 255);
                       </widget>
                      </item>
                      <item>
+                      <widget class="QLabel" name="group_lab_2">
+                       <property name="text">
+                        <string>GRUPO</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
                       <widget class="QLabel" name="precio_lab">
                        <property name="text">
                         <string>PRECIO</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="cant_disp_lab">
+                       <property name="text">
+                        <string>CANTIDAD DISPONIBLE</string>
                        </property>
                       </widget>
                      </item>
@@ -873,7 +887,20 @@ border:1px solid rgb(32, 80, 255);
                       </widget>
                      </item>
                      <item>
-                      <widget class="QLabel" name="prec_lab">
+                      <widget class="QLabel" name="group_lab">
+                       <property name="styleSheet">
+                        <string notr="true">color:white;</string>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="prec_line"/>
+                     </item>
+                     <item>
+                      <widget class="QLabel" name="cant_lab">
                        <property name="styleSheet">
                         <string notr="true">color:white;</string>
                        </property>
