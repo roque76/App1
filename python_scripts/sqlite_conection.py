@@ -4,10 +4,10 @@ class Conect():
     def __init__(self):
         self.conexion = sqlite3.connect('Inventario.db')
     
-    def register(self,ref,name,mat,cant,prec,compra):
+    def register(self,ref,name,mat,cant,prec,compra,group):
         cursor = self.conexion.cursor()
-        bd = f'''INSERT INTO INVENTARIO (REFERENCIA,NOMBRE,MATERIAL,PRECIO_VENTA,COMPRA,CANTIDAD)
-        VALUES('{ref}','{name}','{mat}','{prec}','{compra}','{cant}')'''
+        bd = f'''INSERT INTO INVENTARIO (REFERENCIA,NOMBRE,MATERIAL,PRECIO_VENTA,COMPRA,CANTIDAD,GRUPO)
+        VALUES('{ref}','{name}','{mat}','{prec}','{compra}','{cant}','{group}')'''
         cursor.execute(bd)
         self.conexion.commit()
         cursor.close()

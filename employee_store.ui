@@ -437,7 +437,7 @@ border:1px solid rgb(32, 80, 255);
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="inventory_pag">
                 <layout class="QVBoxLayout" name="verticalLayout">
@@ -475,7 +475,7 @@ background-color: rgb(0, 0, 0);
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit_3"/>
+                     <widget class="QLineEdit" name="group_line_inv"/>
                     </item>
                     <item>
                      <spacer name="horizontalSpacer_8">
@@ -491,7 +491,7 @@ background-color: rgb(0, 0, 0);
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_3">
+                     <widget class="QPushButton" name="search_inv">
                       <property name="minimumSize">
                        <size>
                         <width>120</width>
@@ -736,7 +736,7 @@ border:1px solid rgb(32, 80, 255);
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit"/>
+                     <widget class="QLineEdit" name="ref_line_sell"/>
                     </item>
                     <item>
                      <spacer name="horizontalSpacer_7">
@@ -752,7 +752,7 @@ border:1px solid rgb(32, 80, 255);
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton">
+                     <widget class="QPushButton" name="search_ref">
                       <property name="minimumSize">
                        <size>
                         <width>120</width>

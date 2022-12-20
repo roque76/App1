@@ -25,4 +25,11 @@ class Conexion():
         cursor.close()
         return inventory
     
-    
+    def fact_inv(self,ref,name,mat,group,prec,cant):
+        cursor = self.conexion.cursor()
+        command = f'''INSERT INTO FACTURAS (REFERENCIA,NOMBRE,MATERIAL,GRUPO,PREC_UNIT,CANTIDAD)VALUES('{ref}','{name}','{mat}','{group},'{prec}','{cant}')'''
+        cursor.execute(command)
+        self.conexion.commit()
+        a = cursor.rowcount
+        cursor.close()
+        return a

@@ -93,7 +93,7 @@ class Admin_store(QMainWindow):
         self.prodc_table.clear()
         self.prodc_table.setRowCount(len(data))
         self.prodc_table.setColumnCount(len(data[0]))
-        columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD']
+        columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
         self.prodc_table.setHorizontalHeaderLabels(columnas)
 
         for i, row in enumerate(data):
@@ -109,15 +109,17 @@ class Admin_store(QMainWindow):
         cantidad = self.cant_line.text().upper()
         prec = self.prec_line.text().upper()
         compra = self.compr_line.text().upper()
+        group = self.group_line.text().upper()
 
-        if ref != ''and name!=''and mat!='' and cantidad!= ''and prec!=''and compra!='':
-            self.data_base.register(ref,name,mat,cantidad,prec,compra)
+        if ref != ''and name!=''and mat!='' and cantidad!= ''and prec!=''and compra!=''and group!='':
+            self.data_base.register(ref,name,mat,cantidad,prec,compra,group)
             self.compr_line.clear()
             self.name_line.clear()
             self.mat_line.clear()
             self.cant_line.clear()
             self.ref_line.clear()
             self.prec_line.clear()
+            self.group_line.clear()
             self.indic_reg.setText('Producto Registrado')
         else:
             self.indic_reg.setText('Rellene todos los campos')

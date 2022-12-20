@@ -30,7 +30,9 @@ class Employee_store(QMainWindow):
         self.setWindowOpacity(1)
         #Iventory page set up
         self.refresh_bt.clicked.connect(self.show_inv)
-
+        self.search_inv.clicked.connect(self.show_inv_group)
+        #Sell page set up
+        self.search_ref.clicked.connect(self.show_data_ref)                                
     def move_men(self): 
         if True:
             width = self.control_f.width()
@@ -83,15 +85,34 @@ class Employee_store(QMainWindow):
     
     def show_inv_group(self):
         group = self.group_line_inv.text().upper()
-        data = self.data_base.group_inv(group)
-        self.prodc_table.setRowCount(len(data))
-        self.prodc_table.setColumnCount(len(data[0]))
-        columnas=['REF.','NOMBRE','MATERIAL','PRECIO','CANTIDAD','GRUPO']
-        self.prodc_table.setHorizontalHeaderLabels(columnas)
+        if group !='':
+            data = self.data_base.group_inv(group)
+            self.prodc_table.setRowCount(len(data))
+            self.prodc_table.setColumnCount(len(data[0]))
+            columnas=['REF.','NOMBRE','MATERIAL','PRECIO','CANTIDAD','GRUPO']
+            self.prodc_table.setHorizontalHeaderLabels(columnas)
 
-        for i, row in enumerate(data):
-            for j, column in enumerate(row):
-                self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+            for i, row in enumerate(data):
+                for j, column in enumerate(row):
+                    self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            print(0)
+    
+    def show_data_ref(self):
+        ref_prod = self.ref_line_sell.text().upper()
+        self.producto = self.data_base.ref_inv(ref_prod)
+        if len(self.producto) !=0:
+            self.id = self.producto[0][0]
+            self.id_updt_lab.setText(str(self.id))
+            self.ref_updt_line.setText(self.producto[0][1])
+            self.name_updt_line.setText(self.producto[0][2])
+            self.mat_updt_line.setText(self.producto[0][3])
+            self.prec_updt_line.setText(self.producto[0][4])
+            self.compr_updt_line.setText(self.producto[0][5])
+            self.cant_updt_line.setText(self.producto[0][7])
+            self.indic_reg.setText('Producto encontrado')
+        else:
+            self.indic_reg.setText("No existe el producto")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
