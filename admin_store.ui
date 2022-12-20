@@ -511,6 +511,11 @@ border:1px solid rgb(32, 80, 255);
                      <string>CANTIDAD</string>
                     </property>
                    </column>
+                   <column>
+                    <property name="text">
+                     <string>GRUPO</string>
+                    </property>
+                   </column>
                   </widget>
                  </item>
                  <item>
@@ -628,6 +633,13 @@ border:1px solid rgb(32, 80, 255);
                        </property>
                       </widget>
                      </item>
+                     <item>
+                      <widget class="QLabel" name="label">
+                       <property name="text">
+                        <string>GRUPO</string>
+                       </property>
+                      </widget>
+                     </item>
                     </layout>
                    </item>
                    <item>
@@ -652,6 +664,9 @@ border:1px solid rgb(32, 80, 255);
                      </item>
                      <item>
                       <widget class="QLineEdit" name="compr_line"/>
+                     </item>
+                     <item>
+                      <widget class="QLineEdit" name="group_line"/>
                      </item>
                     </layout>
                    </item>
