@@ -133,9 +133,9 @@ class Admin_store(QMainWindow):
             self.ref_updt_line.setText(self.producto[0][1])
             self.name_updt_line.setText(self.producto[0][2])
             self.mat_updt_line.setText(self.producto[0][3])
-            self.prec_updt_line.setText(self.producto[0][4])
-            self.compr_updt_line.setText(self.producto[0][5])
-            self.cant_updt_line.setText(self.producto[0][7])
+            self.prec_updt_line.setText(str(self.producto[0][4]))
+            self.compr_updt_line.setText(str(self.producto[0][5]))
+            self.cant_updt_line.setText(str(self.producto[0][7]))
             self.indic_reg.setText('Producto encontrado')
         else:
             self.indic_reg.setText("No existe el producto")

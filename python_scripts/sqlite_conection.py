@@ -11,6 +11,7 @@ class Conect():
         cursor.execute(bd)
         self.conexion.commit()
         cursor.close()
+        self.updt_util()
     
     def show_inv(self):
         cursor = self.conexion.cursor()
@@ -39,8 +40,12 @@ class Conect():
         a = cursor.rowcount
         self.conexion.commit()
         cursor.close()
+        self.updt_util()
         return a
         
-    
-    
+    def updt_util(self):
+        cursor = self.conexion.cursor()
+        cursor.execute("UPDATE INVENTARIO SET UTILIDAD=PRECIO_VENTA-COMPRA")
+        self.conexion.commit()
+        cursor.close()
 
