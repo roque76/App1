@@ -1,5 +1,5 @@
 import sqlite3
-
+import itertools
 class Conexion():
     def __init__(self):
         self.conexion = sqlite3.connect('Inventario.db')
@@ -20,16 +20,36 @@ class Conexion():
     
     def ref_inv(self,ref):
         cursor = self.conexion.cursor()
-        cursor.execute("SELECT REFERENCIA,NOMBRE,MATERIAL,PRECIO_VENTA,CANTIDAD FROM INVENTARIO WHERE REFERENCIA=?",(ref,))
+        cursor.execute("SELECT REFERENCIA,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD FROM INVENTARIO WHERE REFERENCIA=?",(ref,))
         inventory = cursor.fetchall()
         cursor.close()
         return inventory
     
     def fact_inv(self,ref,name,mat,group,prec,cant):
         cursor = self.conexion.cursor()
-        command = f'''INSERT INTO FACTURAS (REFERENCIA,NOMBRE,MATERIAL,GRUPO,PREC_UNIT,CANTIDAD)VALUES('{ref}','{name}','{mat}','{group},'{prec}','{cant}')'''
-        cursor.execute(command)
+        cursor.execute(f"INSERT INTO FACTURAS (REF,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD)VALUES('{ref}','{name}','{mat}','{group}','{prec}','{cant}')")
         self.conexion.commit()
-        a = cursor.rowcount
+        self.tot_val()
         cursor.close()
-        return a
+        
+    
+    def show_fact(self):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REF,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD,VALOR_TOTAL,IVA FROM FACTURAS")
+        fact = cursor.fetchall()
+        cursor.close()
+        return fact
+    
+    def fact_group(self,group):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REF,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD,VALOR_TOTAL,IVA FROM FACTURAS WHERE GRUPO =?",(group,))
+        filt = cursor.fetchall()
+        cursor.close()
+        self.tot_val()
+        return filt
+    
+    def tot_val(self):
+        cursor = self.conexion.cursor()
+        cursor.execute("UPDATE FACTURAS SET VALOR_TOTAL=PRECIO_VENTA*CANTIDAD")
+        self.conexion.commit()
+        cursor.close()

@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication,QMainWindow,QHeaderView
+from PyQt5.QtWidgets import QApplication,QMainWindow,QHeaderView,QMessageBox
 from PyQt5.QtCore import QPropertyAnimation,QEasingCurve,Qt,QPoint
 from PyQt5 import QtCore,QtWidgets
 from PyQt5.uic import loadUi
@@ -45,6 +45,7 @@ class Admin_store(QMainWindow):
         self.prodc_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.del_table_prod.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         
+        self.search_db.clicked.connect(self.gr_datab)
     def clear(self):
         self.indic_upd.setText("")
         self.indic_reg.setText("")
@@ -64,7 +65,7 @@ class Admin_store(QMainWindow):
     def mousePressEvent(self, event):
         self.clicked_pos = event.globalPos()
 
-    def move_window (self, event):
+    def move_window (self, event):  
         delt = QPoint(event.globalPos() - self.clicked_pos)
         self.move(self.x()+delt.x(),self.y()+delt.y())
         self.clicked_pos = event.globalPos()
@@ -122,8 +123,12 @@ class Admin_store(QMainWindow):
             self.group_line.clear()
             self.indic_reg.setText('Producto Registrado')
         else:
-            self.indic_reg.setText('Rellene todos los campos')
-    
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Campos Vacios')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()    
     def search_name_updt(self):
         name_prod = self.name_sear_line.text().upper()
         self.producto = self.data_base.search(name_prod)
@@ -136,9 +141,15 @@ class Admin_store(QMainWindow):
             self.prec_updt_line.setText(str(self.producto[0][4]))
             self.compr_updt_line.setText(str(self.producto[0][5]))
             self.cant_updt_line.setText(str(self.producto[0][7]))
-            self.indic_reg.setText('Producto encontrado')
+            self.gr_updt_line.setText(str(self.producto[0][8]))
+            self.indic_upd.setText('Producto encontrado')
         else:
-            self.indic_reg.setText("No existe el producto")
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Producto no encontrado')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
         
     def modify_products(self):
         self.indic_upd.setText("")
@@ -154,7 +165,8 @@ class Admin_store(QMainWindow):
             cantidad = self.cant_updt_line.text().upper()
             prec = self.prec_updt_line.text().upper()
             compra = self.compr_updt_line.text().upper()
-            action = self.data_base.update(id_,ref,name,mat,prec,compra,cantidad)
+            grupo = self.gr_updt_line.text().upper()
+            action = self.data_base.update(id_,ref,name,mat,prec,compra,cantidad,grupo)
         if action ==1:
             self.indic_upd.setText("Producto Actualizado")
             self.ref_line.clear()
@@ -173,24 +185,36 @@ class Admin_store(QMainWindow):
     
     def search_del_name(self):
         name_del = str(self.nam_sear_del_line.text().upper())
-        product_del = self.data_base.search(name_del)
-        self.del_table_prod.setRowCount(len(product_del))
+    
+        if name_del!='':
+            data = self.data_base.search(name_del)
 
-        if len(product_del) == 0:
-            self.indic_del.setText('No existe')
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Producto no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+                
+            else:
+                self.indic_del.setText('Producto Encontrado')
+                self.del_table_prod.setRowCount(len(data))
+                self.del_table_prod.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.del_table_prod.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.del_table_prod.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
         else:
-            self.indic_del.setText('Producto Encontrado')
-        tablerow=0
-        for row in product_del:
-            self.product_name = row[2]
-            self.del_table_prod.setItem(tablerow,0,QtWidgets.QTableWidgetItem(row[1]))
-            self.del_table_prod.setItem(tablerow,1,QtWidgets.QTableWidgetItem(row[2]))
-            self.del_table_prod.setItem(tablerow,2,QtWidgets.QTableWidgetItem(row[3]))
-            self.del_table_prod.setItem(tablerow,3,QtWidgets.QTableWidgetItem(row[4]))
-            self.del_table_prod.setItem(tablerow,4,QtWidgets.QTableWidgetItem(row[5]))
-            self.del_table_prod.setItem(tablerow,5,QtWidgets.QTableWidgetItem(row[6]))
-            self.del_table_prod.setItem(tablerow,6,QtWidgets.QTableWidgetItem(row[7]))
-            tablerow=+1
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Campo Vacio')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+
     def delete_products(self):
         self.row_flag = self.del_table_prod.currentRow()
         if self.row_flag == 0:
@@ -198,6 +222,37 @@ class Admin_store(QMainWindow):
             self.data_base.delete(self.product_name)
             self.indic_del.setText('Producto Eliminado')
             self.nam_sear_del_line.setText('')
+    
+    def gr_datab(self):
+        group = self.gr_line.text().upper()
+
+        if group!='':
+            data = self.data_base.gr_db(group)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Grupo no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+
         
 if __name__ == '__main__':
     app = QApplication(sys.argv)

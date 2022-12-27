@@ -33,9 +33,9 @@ class Conect():
         self.conexion.commit()
         cursor.close()
     
-    def update(self,id_,ref,name,mat,prec,compra,cant):
+    def update(self,id_,ref,name,mat,prec,compra,cant,group):
         cursor = self.conexion.cursor()
-        bd = 'UPDATE INVENTARIO SET REFERENCIA="{}",NOMBRE="{}",MATERIAL="{}",PRECIO_VENTA="{}",COMPRA="{}",CANTIDAD="{}" WHERE ID={}'.format(ref,name,mat,prec,compra,cant,id_)
+        bd = 'UPDATE INVENTARIO SET REFERENCIA="{}",NOMBRE="{}",MATERIAL="{}",PRECIO_VENTA="{}",COMPRA="{}",CANTIDAD="{}", GRUPO="{}" WHERE ID={}'.format(ref,name,mat,prec,compra,cant,group,id_)
         cursor.execute(bd)
         a = cursor.rowcount
         self.conexion.commit()
@@ -49,3 +49,9 @@ class Conect():
         self.conexion.commit()
         cursor.close()
 
+    def gr_db(self,group):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT*FROM INVENTARIO WHERE GRUPO=?",(group,))
+        inv = cursor.fetchall()
+        cursor.close()
+        return inv

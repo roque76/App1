@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication,QMainWindow,QHeaderView
+from PyQt5.QtWidgets import QApplication,QMainWindow,QHeaderView,QMessageBox
 from PyQt5.QtCore import QPropertyAnimation,QEasingCurve,Qt,QPoint
 from PyQt5 import QtCore,QtWidgets
 from PyQt5.uic import loadUi
@@ -32,7 +32,11 @@ class Employee_store(QMainWindow):
         self.refresh_bt.clicked.connect(self.show_inv)
         self.search_inv.clicked.connect(self.show_inv_group)
         #Sell page set up
-        self.search_ref.clicked.connect(self.show_data_ref)                                
+        self.search_ref.clicked.connect(self.show_data_ref)  
+        self.sell_pag_bt.clicked.connect(self.new_fact)
+        #Bills page
+        self.updt_fact.clicked.connect(self.show_fact) 
+        self.gr_sells.clicked.connect(self.show_fact_gr)
     def move_men(self): 
         if True:
             width = self.control_f.width()
@@ -87,27 +91,104 @@ class Employee_store(QMainWindow):
         group = self.group_line_inv.text().upper()
         if group !='':
             data = self.data_base.group_inv(group)
-            self.prodc_table.setRowCount(len(data))
-            self.prodc_table.setColumnCount(len(data[0]))
-            columnas=['REF.','NOMBRE','MATERIAL','PRECIO','CANTIDAD','GRUPO']
-            self.prodc_table.setHorizontalHeaderLabels(columnas)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Grupo no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['REF.','NOMBRE','MATERIAL','PRECIO','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
 
-            for i, row in enumerate(data):
-                for j, column in enumerate(row):
-                    self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
         else:
-            print(0)
-    
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+
     def show_data_ref(self):
         ref_prod = self.ref_line_sell.text().upper()
         self.producto = self.data_base.ref_inv(ref_prod)
         if len(self.producto) !=0:
-            self.ref_lab_3.setText(self.producto[0][1])
-            self.name_lab_3.setText(self.producto[0][2])
-            self.mat_lab_2.setText(str(self.producto[0][3]))
-            self.group_lab.setText(str(self.producto[0][4]))
-        
-       
+            self.ref_lab_3.setText(self.producto[0][0])
+            self.name_lab_3.setText(self.producto[0][1])
+            self.mat_lab_2.setText(str(self.producto[0][2]))
+            self.group_lab.setText(str(self.producto[0][3]))
+            self.prec_line.setText(str(self.producto[0][4]))
+            self.cant_lab.setText(str(self.producto[0][5]))
+    
+    def show_fact(self):
+        data = self.data_base.show_fact()
+        self.fact_table.clear()
+        self.fact_table.setRowCount(len(data))
+        self.fact_table.setColumnCount(len(data[0]))
+        columnas=['REF.','NOMBRE','MATERIAL','GRUPO','PRECIO','CANTIDAD','VALOR_TOTAL','IVA']
+        self.fact_table.setHorizontalHeaderLabels(columnas)
+
+        for i, row in enumerate(data):
+            for j, column in enumerate(row):
+                self.fact_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+    def new_fact(self):
+        ref = self.ref_lab_3.text().upper()
+        name = self.name_lab_3.text().upper()
+        mat = self.mat_lab_2.text().upper()
+        gr = self.group_lab.text().upper()
+        price = self.prec_line.text().upper()
+        cant = self.cant_line.text().upper()
+        if ref != '' and name !='' and mat != '' and gr!= '' and price!='' and cant!= '':
+            self.data_base.fact_inv(ref,name,mat,gr,price,cant)
+            self.ref_lab_3.clear()
+            self.name_lab_3.clear()
+            self.mat_lab_2.clear()
+            self.group_lab.clear()
+            self.prec_line.clear()
+            self.cant_line.clear()
+            self.cant_lab.clear()
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene todos los espacios')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+
+    def show_fact_gr(self):
+        group = self.group_line_sell.text().upper()
+        if group !='':
+            data = self.data_base.fact_group(group)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Grupo no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+                self.fact_table.setRowCount(len(data))
+                self.fact_table.setColumnCount(len(data[0]))
+                columnas=['REF.','NOMBRE','MATERIAL','GRUPO','PRECIO','CANTIDAD','VALOR_TOTAL','IVA']
+                self.fact_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.fact_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
