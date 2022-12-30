@@ -34,6 +34,8 @@ class Employee_store(QMainWindow):
         #Sell page set up
         self.search_ref.clicked.connect(self.show_data_ref)  
         self.sell_pag_bt.clicked.connect(self.new_fact)
+        self.strt_fact.clicked.connect(self.new_bill)
+        self.close_bill.clicked.connect(self.closed_bill)
         #Bills page
         self.updt_fact.clicked.connect(self.show_fact) 
         self.gr_sells.clicked.connect(self.show_fact_gr)
@@ -64,6 +66,15 @@ class Employee_store(QMainWindow):
         self.minimize.hide()
         self.maximize.show()
 
+    def new_bill (self):
+        self.data_base.new_fact()
+        
+        msg = QMessageBox()
+        msg.setWindowTitle('NUEVA FACTURA')
+        msg.setText('Factura abierta')
+        msg.setIcon(QMessageBox.Warning)
+        msg.setStandardButtons(QMessageBox.Ok)
+        x = msg.exec_()
 
     def mousePressEvent(self,event):        
         self.clicked_pos = event.globalPos()
@@ -74,6 +85,15 @@ class Employee_store(QMainWindow):
         self.clicked_pos = event.globalPos()
         if self.clicked_pos.y()<=10:
             self.maximized()
+
+    def closed_bill(self):
+        self.data_base.close_bill()
+        msg = QMessageBox()
+        msg.setWindowTitle("FACTURA CERRADA")
+        msg.setText('Factura cerrada')
+        msg.setIcon(QMessageBox.Warning)
+        msg.setStandardButtons(QMessageBox.Ok)
+        x = msg.exec_()
 
     def show_inv(self):
         data = self.data_base.show_inv()
@@ -125,13 +145,19 @@ class Employee_store(QMainWindow):
             self.group_lab.setText(str(self.producto[0][3]))
             self.prec_line.setText(str(self.producto[0][4]))
             self.cant_lab.setText(str(self.producto[0][5]))
-    
+        elif len(self.producto)==0:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Arrticulo no encontrado')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
     def show_fact(self):
         data = self.data_base.show_fact()
         self.fact_table.clear()
         self.fact_table.setRowCount(len(data))
         self.fact_table.setColumnCount(len(data[0]))
-        columnas=['REF.','NOMBRE','MATERIAL','GRUPO','PRECIO','CANTIDAD','VALOR_TOTAL','IVA']
+        columnas=['REF.','NOMBRE','MATERIAL','GRUPO','PRECIO','CANTIDAD','VALOR_TOTAL','IVA','FECHA','NUM_FACT']
         self.fact_table.setHorizontalHeaderLabels(columnas)
 
         for i, row in enumerate(data):
@@ -162,20 +188,20 @@ class Employee_store(QMainWindow):
             x = msg.exec_()
 
     def show_fact_gr(self):
-        group = self.group_line_sell.text().upper()
-        if group !='':
-            data = self.data_base.fact_group(group)
+        num = self.group_line_sell.text().upper()
+        if num !='':
+            data = self.data_base.fact_num_fact(num)
             if len(data) == 0:
                 msg = QMessageBox()
                 msg.setWindowTitle('Error')
-                msg.setText('Grupo no encontrado')
+                msg.setText('Numero de factura no encontrado')
                 msg.setIcon(QMessageBox.Warning)
                 msg.setStandardButtons(QMessageBox.Ok)
                 x = msg.exec_()
             else:
                 self.fact_table.setRowCount(len(data))
                 self.fact_table.setColumnCount(len(data[0]))
-                columnas=['REF.','NOMBRE','MATERIAL','GRUPO','PRECIO','CANTIDAD','VALOR_TOTAL','IVA']
+                columnas=['REF.','NOMBRE','MATERIAL','GRUPO','PRECIO','CANTIDAD','VALOR_TOTAL','IVA','FECHA','NUM_FACT']
                 self.fact_table.setHorizontalHeaderLabels(columnas)
 
                 for i, row in enumerate(data):

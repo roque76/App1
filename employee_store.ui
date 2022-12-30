@@ -984,7 +984,7 @@ border:1px solid rgb(32, 80, 255);
                     </spacer>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_2">
+                    <widget class="QPushButton" name="close_bill">
                      <property name="minimumSize">
                       <size>
                        <width>120</width>
@@ -1019,6 +1019,19 @@ border:1px solid rgb(32, 80, 255);
                        <width>35</width>
                        <height>35</height>
                       </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="strt_fact">
+                     <property name="minimumSize">
+                      <size>
+                       <width>120</width>
+                       <height>35</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string>INICIAR</string>
                      </property>
                     </widget>
                    </item>
@@ -1365,7 +1378,7 @@ border:1px solid rgb(32, 80, 255);
                     <item>
                      <widget class="QLabel" name="label_12">
                       <property name="text">
-                       <string>GRUPO</string>
+                       <string>NUMERO FACTURA</string>
                       </property>
                      </widget>
                     </item>
