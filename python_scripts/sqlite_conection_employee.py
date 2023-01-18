@@ -22,7 +22,28 @@ class Conexion():
     
     def ref_inv(self,ref):
         cursor = self.conexion.cursor()
-        cursor.execute("SELECT REFERENCIA,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD FROM INVENTARIO WHERE REFERENCIA=?",(ref,))
+        cursor.execute("SELECT REFERENCIA,NOMBRE,MATERIAL,PRECIO_VENTA,CANTIDAD,GRUPO FROM INVENTARIO WHERE REFERENCIA=?",(ref,))
+        inventory = cursor.fetchall()
+        cursor.close()
+        return inventory
+    
+    def name_inv(self,name):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REFERENCIA,NOMBRE,MATERIAL,PRECIO_VENTA,CANTIDAD,GRUPO FROM INVENTARIO WHERE NOMBRE=?",(name,))
+        inventory = cursor.fetchall()
+        cursor.close()
+        return inventory
+    
+    def mat_inv(self,mat):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REFERENCIA,NOMBRE,MATERIAL,PRECIO_VENTA,CANTIDAD,GRUPO FROM INVENTARIO WHERE MATERIAL=?",(mat,))
+        inventory = cursor.fetchall()
+        cursor.close()
+        return inventory
+
+    def prec_inv(self,prec):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REFERENCIA,NOMBRE,MATERIAL,PRECIO_VENTA,CANTIDAD,GRUPO FROM INVENTARIO WHERE PRECIO_VENTA =?",(prec,))
         inventory = cursor.fetchall()
         cursor.close()
         return inventory
@@ -91,6 +112,38 @@ class Conexion():
         self.tot_val()
         return filt
     
+    def fact_gr(self,group):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REF,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD,VALOR_TOTAL,IVA,FECHA,NUM_FACT FROM FACTURAS WHERE GRUPO =?",(group,))
+        filt = cursor.fetchall()
+        cursor.close()
+        self.tot_val()
+        return filt
+
+    def fact_name(self,name):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REF,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD,VALOR_TOTAL,IVA,FECHA,NUM_FACT FROM FACTURAS WHERE NOMBRE =?",(name,))
+        filt = cursor.fetchall()
+        cursor.close()
+        self.tot_val()
+        return filt
+    
+    def fact_mat(self,mat):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REF,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD,VALOR_TOTAL,IVA,FECHA,NUM_FACT FROM FACTURAS WHERE MATERIAL =?",(mat,))
+        filt = cursor.fetchall()
+        cursor.close()
+        self.tot_val()
+        return filt
+    
+    def fact_prec(self,prec):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT REF,NOMBRE,MATERIAL,GRUPO,PRECIO_VENTA,CANTIDAD,VALOR_TOTAL,IVA,FECHA,NUM_FACT FROM FACTURAS WHERE PRECIO_VENTA =?",(prec,))
+        filt = cursor.fetchall()
+        cursor.close()
+        self.tot_val()
+        return filt
+
     def tot_val(self):
         cursor = self.conexion.cursor()
         cursor.execute("UPDATE FACTURAS SET VALOR_TOTAL=PRECIO_VENTA*CANTIDAD")

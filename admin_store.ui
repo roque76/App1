@@ -195,7 +195,7 @@ background-color:rgb(0,0,0);
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="close">
+           <widget class="QPushButton" name="clos">
             <property name="minimumSize">
              <size>
               <width>40</width>
@@ -460,7 +460,7 @@ border:1px solid rgb(32, 80, 255);
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="currentIndex">
-                <number>3</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="base_pag">
                 <layout class="QVBoxLayout" name="verticalLayout">
@@ -519,14 +519,55 @@ border:1px solid rgb(32, 80, 255);
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_10">
                     <item>
-                     <widget class="QLabel" name="label_3">
-                      <property name="text">
-                       <string>GRUPO</string>
+                     <widget class="QComboBox" name="combo">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+font: 14px &quot;Arial Black&quot;;</string>
                       </property>
+                      <item>
+                       <property name="text">
+                        <string>GRUPO</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>NOMBRE</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>PRECIO</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>REFERENCIA</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>CANTIDAD</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>UTILIDAD</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>MATERIAL</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>PRECIO DE COMPRA</string>
+                       </property>
+                      </item>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="gr_line"/>
+                     <widget class="QLineEdit" name="combo_line"/>
                     </item>
                     <item>
                      <spacer name="horizontalSpacer_8">

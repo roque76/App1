@@ -23,9 +23,9 @@ class Admin_store(QMainWindow):
         self.search_del_bt.clicked.connect(self.search_del_name)
         self.pagdel_bt.clicked.connect(self.delete_products)
         #Control title bar
-        self.close.clicked.connect(lambda: self.close)
         self.maximize.clicked.connect(self.maximized)
         self.minimize.clicked.connect(self.minimized)
+        self.clos.clicked.connect(lambda:self.close())
         self.hide.clicked.connect(self.hided)
         #Opacity hide title bar
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -45,7 +45,7 @@ class Admin_store(QMainWindow):
         self.prodc_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.del_table_prod.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         
-        self.search_db.clicked.connect(self.gr_datab)
+        self.search_db.clicked.connect(self.election_db)
     def clear(self):
         self.indic_upd.setText("")
         self.indic_reg.setText("")
@@ -224,7 +224,7 @@ class Admin_store(QMainWindow):
             self.nam_sear_del_line.setText('')
     
     def gr_datab(self):
-        group = self.gr_line.text().upper()
+        group = self.combo_line.text().upper()
 
         if group!='':
             data = self.data_base.gr_db(group)
@@ -253,7 +253,245 @@ class Admin_store(QMainWindow):
             msg.setStandardButtons(QMessageBox.Ok)
             x = msg.exec_()
 
+    def ref_datab(self):
+        ref = self.combo_line.text().upper()
+
+        if ref!='':
+            data = self.data_base.gr_db(ref)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Referencia no encontrada')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+    
+    def name_datab(self):
+        name = self.combo_line.text().upper()
+
+        if name!='':
+            data = self.data_base.gr_db(name)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Nombre no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+    
+    def mat_datab(self):
+        mat = self.combo_line.text().upper()
+
+        if mat!='':
+            data = self.data_base.gr_db(mat)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Material no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+    
+    def buyed_datab(self):
+        buyed = self.combo_line.text().upper()
+
+        if buyed!='':
+            data = self.data_base.gr_db(buyed)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Precio de compra no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+    
+    def utils_datab(self):
+        utils = self.combo_line.text().upper()
+
+        if utils!='':
+            data = self.data_base.gr_db(utils)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Utilidad no encontrada')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+    
+    def cant_datab(self):
+        cant = self.combo_line.text().upper()
+
+        if cant!='':
+            data = self.data_base.gr_db(cant)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Cantidad no encontrada')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+    
+    def prec_datab(self):
+        prec = self.combo_line.text().upper()
+
+        if prec!='':
+            data = self.data_base.gr_db(prec)
+            if len(data) == 0:
+                msg = QMessageBox()
+                msg.setWindowTitle('Error')
+                msg.setText('Precio no encontrado')
+                msg.setIcon(QMessageBox.Warning)
+                msg.setStandardButtons(QMessageBox.Ok)
+                x = msg.exec_()
+            else:
+
+                self.prodc_table.setRowCount(len(data))
+                self.prodc_table.setColumnCount(len(data[0]))
+                columnas=['ID_DB','REF.','NOMBRE','MATERIAL','PRECIO','COMPRADO','UTILIDAD','CANTIDAD','GRUPO']
+                self.prodc_table.setHorizontalHeaderLabels(columnas)
+
+                for i, row in enumerate(data):
+                    for j, column in enumerate(row):
+                        self.prodc_table.setItem(i, j, QtWidgets.QTableWidgetItem(str(column)))
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Rellene el campo')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
         
+    def election_db(self):
+        option = self.combo.currentText()
+
+        if option == "GRUPO":
+            self.gr_datab()
+        elif option == "NOMBRE":
+            self.name_datab()
+        elif option == "PRECIO":
+            self.prec_datab()
+        elif option == "REFERENCIA":
+            self.ref_datab()
+        elif option == "CANTIDAD":
+            self.cant_datab()
+        elif option == "UTILIDAD":
+            self.utils_datab()
+        elif option == "MATERIAL":
+            self.mat_datab()
+        elif option == "PRECIO DE COMPRA":
+            self.buyed_datab()
+        
+        else:
+            msg = QMessageBox()
+            msg.setWindowTitle('Error')
+            msg.setText('Opcion invalida')
+            msg.setIcon(QMessageBox.Warning)
+            msg.setStandardButtons(QMessageBox.Ok)
+            x = msg.exec_()
+            
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     admin = Admin_store()

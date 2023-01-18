@@ -55,3 +55,40 @@ class Conect():
         inv = cursor.fetchall()
         cursor.close()
         return inv
+
+    def ref_db(self,ref):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT*FROM INVENTARIO WHERE REFERENCIA=?",(ref,))
+        inv = cursor.fetchall()
+        cursor.close()
+        return inv
+    def name_db(self,name):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT*FROM INVENTARIO WHERE NOMBRE=?",(name,))
+        inv = cursor.fetchall()
+        cursor.close()
+        return inv
+    def mat_db(self,mat):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT*FROM INVENTARIO WHERE MATERIAL=?",(mat,))
+        inv = cursor.fetchall()
+        cursor.close()
+        return inv
+    def buyed_db(self,buyd):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT*FROM INVENTARIO WHERE COMPRA =?",(buyd,))
+        inv = cursor.fetchall()
+        cursor.close()
+        return inv
+    def utils_db(self,ut):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT*FROM INVENTARIO WHERE UTILIDAD=?",(ut,))
+        inv = cursor.fetchall()
+        cursor.close()
+        return inv
+    def mat_db(self,cant):
+        cursor = self.conexion.cursor()
+        cursor.execute("SELECT*FROM INVENTARIO WHERE CANTIDAD=?",(cant,))
+        inv = cursor.fetchall()
+        cursor.close()
+        return inv
