@@ -1,0 +1,25 @@
+
+-.-.-.-.-.-.-.-.-.-
+ Nombre: NAME2
+ Material: MAT2
+ Grupo:GROUP2
+ Cantidad: 3
+Precio:24
+Nota:La mercancia debe dejarse puesta al pie de la obra
+-.-.-.-.-.-.-.-.-.-
+-.-.-.-.-.-.-.-.-.-
+ Nombre: NAME2
+ Material: MAT2
+ Grupo:GROUP2
+ Cantidad: 3
+Precio:24
+Nota:Hay dos test
+-.-.-.-.-.-.-.-.-.-
+-.-.-.-.-.-.-.-.-.-
+ Nombre: NAME1
+ Material: MAT1
+ Grupo:GROUP1
+ Cantidad: 0
+Precio:24
+Nota:ctm
+-.-.-.-.-.-.-.-.-.-
