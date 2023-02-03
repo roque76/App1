@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>621</height>
+    <width>918</width>
+    <height>666</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -460,7 +460,7 @@ border:1px solid rgb(32, 80, 255);
              <item>
               <widget class="QStackedWidget" name="stackedWidget">
                <property name="currentIndex">
-                <number>0</number>
+                <number>4</number>
                </property>
                <widget class="QWidget" name="base_pag">
                 <layout class="QVBoxLayout" name="verticalLayout">
@@ -700,6 +700,321 @@ font: 14px &quot;Arial Black&quot;;</string>
                  </item>
                 </layout>
                </widget>
+               <widget class="QWidget" name="fact_pag">
+                <layout class="QVBoxLayout" name="verticalLayout_23">
+                 <item>
+                  <widget class="QFrame" name="frame_3">
+                   <property name="styleSheet">
+                    <string notr="true">QFrame{
+background-color:rgb(0,0,0);
+}
+QLabel{
+font: 87 12pt &quot;Arial Black&quot;;
+background-color: #000000ff;
+color: rgb(32, 80, 255);
+border:0px solid #14C8CD;
+}
+QLineEdit{
+border: 10px;
+color:rgb(255,255,255);
+border-bottom:2px solid rgb(61,61,61);
+font:75 12pt &quot;Times New Roman&quot;;
+}
+QPushButton{
+background-color:rgb(61,61,61);
+border-radius: 15px;
+color:rgb(255,255,255);
+font:77 10pt &quot;Arial Black&quot;;
+}
+QPushButton:hover{
+background-color: rgb(32, 80, 255);
+border-radius: 15px;
+color:rgb(0,0,0);
+font: 77 10pt &quot;Arial Black&quot;;
+}
+QTableWidget{
+background-color: rgb(255,255,255);
+color:rgb(0,0,0);
+gridline-color:rgb(32, 80, 255);
+font-size:12pt;
+color:#000000;
+}
+QHeaderView::section{
+background-color: rgb(32, 80, 255);
+border:1px solid rgb(0,0,0);
+font-size: 12pt;
+}
+QTableWidget QTableCornerButton::section{
+background-color:rgb(0,0,0);
+border:1px solid rgb(32, 80, 255);
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_21">
+                    <item>
+                     <widget class="QComboBox" name="combo_3">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+font: 14px &quot;Arial Black&quot;;</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>ID</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>REF</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>NOMBRE</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>MATERIAL</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>GRUPO</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>PRECIO VENTA</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>CANTIDAD</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>VALOR TOTAL</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>IVA</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>NUM_FACT</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="combo_line_3"/>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_16">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="search_fact">
+                      <property name="minimumSize">
+                       <size>
+                        <width>120</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>BUSCAR</string>
+                      </property>
+                      <property name="icon">
+                       <iconset>
+                        <normaloff>Imagenes/preferencessystemsearch_94404 (1).png</normaloff>Imagenes/preferencessystemsearch_94404 (1).png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>30</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="tit_product_3">
+                   <property name="text">
+                    <string>ELEMENTOS FACTURAS</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="prodc_table_3">
+                   <column>
+                    <property name="text">
+                     <string>ID</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>REF</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>NOMBRE</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>MATERIAL</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>GRUPO</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>PRECIO_VENTA</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>CANTIDAD</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>VALOR TOTAL</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>IVA</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>NUM_FACT</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>FECHA</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>TIEMPO</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_17">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>621</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="refresh_fact">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>           ACTUALIZAR</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>Imagenes/vcsupdaterequired_93493.png</normaloff>Imagenes/vcsupdaterequired_93493.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>38</width>
+                     <height>38</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="select_pag">
+                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_13">
+                   <item>
+                    <widget class="QPushButton" name="base_bt_2">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string>VER INVENTARIO</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="fact_bt">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string>VER ELEMENTOS DE FACTURA</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="condens_bt">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                     <property name="text">
+                      <string>VER CONDENSADO DE FACTURA</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
                <widget class="QWidget" name="regist_pag">
                 <layout class="QVBoxLayout" name="verticalLayout_8">
                  <item>
@@ -906,6 +1221,219 @@ font: 14px &quot;Arial Black&quot;;</string>
                  </item>
                 </layout>
                </widget>
+               <widget class="QWidget" name="pag_cone">
+                <layout class="QVBoxLayout" name="verticalLayout_14">
+                 <item>
+                  <widget class="QFrame" name="frame_4">
+                   <property name="styleSheet">
+                    <string notr="true">QFrame{
+background-color:rgb(0,0,0);
+}
+QLabel{
+font: 87 12pt &quot;Arial Black&quot;;
+background-color: #000000ff;
+color: rgb(32, 80, 255);
+border:0px solid #14C8CD;
+}
+QLineEdit{
+border: 10px;
+color:rgb(255,255,255);
+border-bottom:2px solid rgb(61,61,61);
+font:75 12pt &quot;Times New Roman&quot;;
+}
+QPushButton{
+background-color:rgb(61,61,61);
+border-radius: 15px;
+color:rgb(255,255,255);
+font:77 10pt &quot;Arial Black&quot;;
+}
+QPushButton:hover{
+background-color: rgb(32, 80, 255);
+border-radius: 15px;
+color:rgb(0,0,0);
+font: 77 10pt &quot;Arial Black&quot;;
+}
+QTableWidget{
+background-color: rgb(255,255,255);
+color:rgb(0,0,0);
+gridline-color:rgb(32, 80, 255);
+font-size:12pt;
+color:#000000;
+}
+QHeaderView::section{
+background-color: rgb(32, 80, 255);
+border:1px solid rgb(0,0,0);
+font-size: 12pt;
+}
+QTableWidget QTableCornerButton::section{
+background-color:rgb(0,0,0);
+border:1px solid rgb(32, 80, 255);
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_22">
+                    <item>
+                     <widget class="QComboBox" name="combo_4">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+font: 14px &quot;Arial Black&quot;;</string>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>ID</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>VALOR_TOTAL</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>NUM_FACT</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>CANTIDAD</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="combo_line_4"/>
+                    </item>
+                    <item>
+                     <spacer name="horizontalSpacer_18">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="search_cond">
+                      <property name="minimumSize">
+                       <size>
+                        <width>120</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>BUSCAR</string>
+                      </property>
+                      <property name="icon">
+                       <iconset>
+                        <normaloff>Imagenes/preferencessystemsearch_94404 (1).png</normaloff>Imagenes/preferencessystemsearch_94404 (1).png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>30</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="tit_product_4">
+                   <property name="text">
+                    <string>ELEMENTOS DE CONDENSADO</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="cond_table">
+                   <column>
+                    <property name="text">
+                     <string>ID</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>VALOR_TOTAL</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>NUM_FACT</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>FECHA</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>TIEMPO</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>CANTIDAD</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>IVA</string>
+                    </property>
+                   </column>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_9">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>665</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="refresh_cond">
+                   <property name="minimumSize">
+                    <size>
+                     <width>120</width>
+                     <height>30</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>           ACTUALIZAR</string>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>Imagenes/vcsupdaterequired_93493.png</normaloff>Imagenes/vcsupdaterequired_93493.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>38</width>
+                     <height>38</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
                <widget class="QWidget" name="updat_pag">
                 <layout class="QVBoxLayout" name="verticalLayout_11">
                  <item>
@@ -1105,22 +1633,6 @@ font: 14px &quot;Arial Black&quot;;</string>
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_6">
                    <item>
-                    <widget class="QLabel" name="indic_upd">
-                     <property name="minimumSize">
-                      <size>
-                       <width>200</width>
-                       <height>30</height>
-                      </size>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="alignment">
-                      <set>Qt::AlignCenter</set>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
                     <spacer name="horizontalSpacer_5">
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
@@ -1175,10 +1687,31 @@ font: 14px &quot;Arial Black&quot;;</string>
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_8">
                    <item>
-                    <widget class="QLabel" name="name_del_sear_lab">
-                     <property name="text">
-                      <string>NOMBRE</string>
+                    <widget class="QComboBox" name="comboBox">
+                     <property name="styleSheet">
+                      <string notr="true">background-color: rgb(255, 255, 255);
+font:14px &quot;Arial Black&quot;;</string>
                      </property>
+                     <item>
+                      <property name="text">
+                       <string>NOMBRE</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>REFERENCIA</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>MATERIAL</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>PRECIO</string>
+                      </property>
+                     </item>
                     </widget>
                    </item>
                    <item>
@@ -1211,6 +1744,11 @@ font: 14px &quot;Arial Black&quot;;</string>
                  </item>
                  <item>
                   <widget class="QTableWidget" name="del_table_prod">
+                   <column>
+                    <property name="text">
+                     <string>ID_DB</string>
+                    </property>
+                   </column>
                    <column>
                     <property name="text">
                      <string>REF</string>
@@ -1246,23 +1784,35 @@ font: 14px &quot;Arial Black&quot;;</string>
                      <string>CANTIDAD</string>
                     </property>
                    </column>
+                   <column>
+                    <property name="text">
+                     <string>GRUPO</string>
+                    </property>
+                   </column>
                   </widget>
                  </item>
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_9">
                    <item>
-                    <widget class="QLabel" name="indic_del">
+                    <widget class="QPushButton" name="del_show">
                      <property name="minimumSize">
                       <size>
-                       <width>200</width>
-                       <height>30</height>
+                       <width>180</width>
+                       <height>35</height>
                       </size>
                      </property>
                      <property name="text">
-                      <string/>
+                      <string>ACTUALIZAR</string>
                      </property>
-                     <property name="alignment">
-                      <set>Qt::AlignCenter</set>
+                     <property name="icon">
+                      <iconset>
+                       <normaloff>Imagenes/vcsupdaterequired_93493.png</normaloff>Imagenes/vcsupdaterequired_93493.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>30</width>
+                       <height>30</height>
+                      </size>
                      </property>
                     </widget>
                    </item>
